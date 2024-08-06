@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+
+  microservice1:
+    build:
+      context: .
+      args:
+        MICROSERVICE_PATH: ./microservice1
+    container_name: ${MICROSERVICE1_CONTAINER_NAME}
+    ports:
+      - ${MICROSERVICE1_HOST_PORT}:${MICROSERVICE1_CONTAINER_PORT}
+    volumes:
+      - ./microservice1/src:/usr/app/src
+    environment:
+      - PORT=${MICROSERVICE1_CONTAINER_PORT}
+    command:
+      npm run start:dev
+
+  microservice2:
+    build:
+      context: .
+      args:
+        MICROSERVICE_PATH: ./microservice2
+    container_name: ${MICROSERVICE2_CONTAINER_NAME}
+    depends_on:
+      - ${REDIS_CONTAINER_NAME}
+    ports:
+      - ${MICROSERVICE2_HOST_PORT}:${MICROSERVICE2_CONTAINER_PORT}
+    volumes:
+      - ./microservice2/src:/usr/app/src
+    environment:
+      - PORT=${MICROSERVICE2_CONTAINER_PORT}
+      - REDIS_HOST=${REDIS_CONTAINER_NAME}
+      - REDIS_PORT=${REDIS_CONTAINER_PORT}
+    command:
+      npm run start:dev

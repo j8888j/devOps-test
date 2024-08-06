@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+
+  microservice1:
+    image: ${REGISTRY_HOST}/${REGISTRY_REPOSITORY_NAME}/app:microservice1
+    container_name: ${MICROSERVICE1_CONTAINER_NAME}
+    ports:
+      - ${MICROSERVICE1_HOST_PORT}:${MICROSERVICE1_CONTAINER_PORT}
+    environment:
+      - PORT=${MICROSERVICE1_CONTAINER_PORT}
+    command:
+      npm run start
+
+  microservice2:
+    image: ${REGISTRY_HOST}/${REGISTRY_REPOSITORY_NAME}/app:microservice2
+    container_name: ${MICROSERVICE2_CONTAINER_NAME}
+    depends_on:
+      - ${REDIS_CONTAINER_NAME}
+    ports:
+      - ${MICROSERVICE2_HOST_PORT}:${MICROSERVICE2_CONTAINER_PORT}
+    environment:
+      - PORT=${MICROSERVICE2_CONTAINER_PORT}
+      - REDIS_HOST=${REDIS_CONTAINER_NAME}
+      - REDIS_PORT=${REDIS_CONTAINER_PORT}
+    command:
+      npm run start

@@ -1,0 +1,8 @@
+.env
+
+node_modules/
+
+digitalocean
+digitalocean.pub
+
+.DS_Store

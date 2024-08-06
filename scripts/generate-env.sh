@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# registry
+echo "REGISTRY_HOST=${{ secrets.REGISTRY_HOST }}" > .env
+echo "REGISTRY_REPOSITORY_NAME=${{ secrets.REGISTRY_REPOSITORY_NAME }}" >> .env
+
+# redis
+echo "REDIS_CONTAINER_NAME=${{ secrets.REDIS_CONTAINER_NAME }}" >> .env
+echo "REDIS_CONTAINER_PORT=${{ secrets.REDIS_CONTAINER_PORT }}" >> .env
+
+# redisinsight
+echo "REDISINSIGHT_CONTAINER_PORT=${{ secrets.REDISINSIGHT_CONTAINER_PORT }}" >> .env
+echo "REDISINSIGHT_HOST_PORT=${{ secrets.REDISINSIGHT_HOST_PORT }}" >> .env
+
+# node microservice1
+echo "MICROSERVICE1_HOST_PORT=${{ secrets.MICROSERVICE1_HOST_PORT }}" >> .env
+echo "MICROSERVICE1_CONTAINER_PORT=${{ secrets.MICROSERVICE1_CONTAINER_PORT }}" >> .env
+echo "MICROSERVICE1_CONTAINER_NAME=${{ secrets.MICROSERVICE1_CONTAINER_NAME }}" >> .env
+
+# node microservice2
+echo "MICROSERVICE2_HOST_PORT=${{ secrets.MICROSERVICE2_HOST_PORT }}" >> .env
+echo "MICROSERVICE2_CONTAINER_PORT=${{ secrets.MICROSERVICE2_CONTAINER_PORT }}" >> .env
+echo "MICROSERVICE2_CONTAINER_NAME=${{ secrets.MICROSERVICE2_CONTAINER_NAME }}" >> .env

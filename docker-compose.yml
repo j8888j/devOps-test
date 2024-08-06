@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+
+  redis:
+    image: redis:latest
+    restart: always
+    container_name: ${REDIS_CONTAINER_NAME}
+    volumes:
+      - redis-data:/data
+
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - "${REDISINSIGHT_HOST_PORT}:${REDISINSIGHT_CONTAINER_PORT}"
+    volumes:
+      - redis-insight:/data
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
+  redis-insight:
