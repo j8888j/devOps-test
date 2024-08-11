@@ -39,10 +39,10 @@ remove-mongo:
 # node app image
 
 build-image:
-	docker build --build-arg MICROSERVICE_PATH=./microservice1 -t node-app .
+	docker build --build-arg MICROSERVICE_PATH=./microservice -t node-app .
 
 tag-image:
-	docker tag node-app registry.digitalocean.com/node-app177771/node-app:latest
+	docker tag node-app registry.digitalocean.com/node-app177771/app:microservice2
 
 push-image:
 	docker push registry.digitalocean.com/node-app177771/node-app:latest
@@ -75,3 +75,11 @@ stop:
 
 down:
 	docker-compose down
+
+# k8s
+
+port-forward-rabbitmq-management:
+	kubectl port-forward rabbitmq-0 9999:15672
+
+port-forward-rabbitmq:
+	kubectl port-forward rabbitmq-0 9998:5672
