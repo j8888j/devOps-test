@@ -36,6 +36,17 @@ services:
     command:
       npm run start:dev
 
+  microservice-nest:
+    build:
+      context: ./microservice-nest/
+    container_name: ${MICROSERVICE_NEST_CONTAINER_NAME}
+    volumes:
+      - ./microservice-nest/src:/usr/app/src
+    ports:
+      - ${MICROSERVICE_NEST_HOST_PORT}:${MICROSERVICE_NEST_CONTAINER_PORT}
+    command:
+      npm run start:dev
+
   ui:
     build:
       context: ./ui/
