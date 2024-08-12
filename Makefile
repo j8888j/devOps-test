@@ -62,6 +62,14 @@ stop-container:
 remove-container:
 	docker rm node-app
 
+# ui app image
+
+build-ui:
+	docker build -t ui . 
+
+run-ui:
+	docker run --name ui-app -p 8080:80 --rm ui
+
 # docker compose
 
 up-dev:

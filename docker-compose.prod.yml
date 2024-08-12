@@ -25,3 +25,10 @@ services:
       - REDIS_PORT=${REDIS_CONTAINER_PORT}
     command:
       npm run start
+
+  ui:
+    build:
+      context: ./ui/
+    container_name: ui
+    ports:
+      - ${UI_HOST_PORT}:${UI_CONTAINER_PORT}
